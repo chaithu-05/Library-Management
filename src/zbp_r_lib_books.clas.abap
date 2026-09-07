@@ -1,0 +1,9 @@
+CLASS zbp_r_lib_books DEFINITION
+  PUBLIC
+  ABSTRACT
+  FINAL
+  FOR BEHAVIOR OF zr_lib_books.
+ENDCLASS.
+
+CLASS zbp_r_lib_books IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,26 @@
+managed implementation in class zbp_r_lib_books unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_LIB_BOOKS alias Books
+persistent table zlib_books
+draft table zlib_books_d
+lock master
+total etag due_date
+authorization master (none)
+{
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  validation validateBook on save { create; field title, author, due_date; }
+  action ( features : instance ) checkOut result [1] $self;
+  action ( features : instance ) returnBook result [1] $self;
+
+  field ( readonly, numbering : managed ) book_id;
+}
